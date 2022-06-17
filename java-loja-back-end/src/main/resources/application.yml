@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:11.1:///loja
+    username: postgres
+    password: postgres
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+  data:
+    mongodb:
+      database: loja
+      host: 172.17.0.2
+  main:
+    lazy-initialization: true
+
+server:
+  servlet:
+    context-path: /api
+  port: 8081
