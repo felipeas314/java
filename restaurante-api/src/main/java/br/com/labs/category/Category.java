@@ -9,8 +9,6 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.lang.NonNull;
 
-import br.com.labs.store.Store;
-
 @Entity
 public class Category {
 
@@ -23,9 +21,6 @@ public class Category {
 	private String name;
 
 	private String description;
-
-	@ManyToOne
-	private Store restaurant;
 
 	public Integer getId() {
 		return id;
@@ -49,14 +44,6 @@ public class Category {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Store getRestaurant() {
-		return restaurant;
-	}
-
-	public void setRestaurant(Store restaurant) {
-		this.restaurant = restaurant;
 	}
 
 }
