@@ -1,9 +1,10 @@
-package br.com.labs.category;
+package br.com.labs.unit.category;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import br.com.labs.category.Category;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;

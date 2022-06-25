@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
@@ -24,13 +25,16 @@ public class CategoryController {
 
 	private CategoryRepository categoryRepository;
 
-	public CategoryController(CategoryRepository categoryRepository) {
+	private CategoryService categoryService;
+
+	public CategoryController(CategoryRepository categoryRepository, CategoryService categoryService) {
 		this.categoryRepository = categoryRepository;
+		this.categoryService = categoryService;
 	}
 
 	@GetMapping
-	public ResponseEntity<Page<Category>> index(@PageableDefault(page = 0, size = 20) Pageable pageable) {
-		return ResponseEntity.ok(categoryRepository.findAll(pageable));
+	public ResponseEntity<Page<Category>> list(@PageableDefault(page = 0, size = 20) Pageable pageable) {
+		return ResponseEntity.ok(categoryService.list(pageable));
 	}
 
 	@PostMapping
@@ -45,9 +49,8 @@ public class CategoryController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Category> show(@PathVariable("id") Integer id) {
-		return categoryRepository.findById(id).map(category -> ResponseEntity.ok().body(category))
-				.orElse(ResponseEntity.notFound().build());
+	public ResponseEntity<Category> findById(@PathVariable("id") Integer id) throws NoHandlerFoundException {
+		return ResponseEntity.ok(categoryService.findById(id));
 	}
 	
 	@PutMapping("/{id}")
