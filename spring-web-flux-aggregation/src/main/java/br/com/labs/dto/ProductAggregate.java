@@ -10,6 +10,16 @@ public class ProductAggregate {
 
 	private List<Review> reviews;
 
+	private ProductAggregate(Product product, Promotion promotion, List<Review> reviews) {
+		this.product = product;
+		this.promotion = promotion;
+		this.reviews = reviews;
+	}
+
+	public static ProductAggregate create(Product product, Promotion promotion, List<Review> reviews) {
+		return new ProductAggregate(product, promotion, reviews);
+	}
+
 	public Product getProduct() {
 		return product;
 	}
