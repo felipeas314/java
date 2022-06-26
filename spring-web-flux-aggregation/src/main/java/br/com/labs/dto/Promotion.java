@@ -9,6 +9,13 @@ public class Promotion {
 	private Double discount;
 
 	private LocalDate endDate;
+	
+	public Promotion(String type, Double discount, LocalDate endDate) {
+		super();
+		this.type = type;
+		this.discount = discount;
+		this.endDate = endDate;
+	}
 
 	public String getType() {
 		return type;
