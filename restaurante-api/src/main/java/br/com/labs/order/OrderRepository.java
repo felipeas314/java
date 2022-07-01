@@ -1,7 +1,7 @@
 package br.com.labs.order;
 
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderRepository extends ReactiveMongoRepository<Order, String> {
+public interface OrderRepository extends JpaRepository<Order, String> {
 
 }

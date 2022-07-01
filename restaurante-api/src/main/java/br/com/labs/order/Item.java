@@ -1,5 +1,7 @@
 package br.com.labs.order;
 
+import javax.persistence.ManyToOne;
+
 import br.com.labs.product.Product;
 
 public class Item {
@@ -7,6 +9,9 @@ public class Item {
 	private Product product;
 
 	private int quantity;
+	
+	@ManyToOne
+	private Order order;
 
 	public Product getProduct() {
 		return product;
