@@ -8,6 +8,7 @@ public interface CategoryService {
 
     public Page<Category> list(Pageable pageable);
     public Category create(Category category);
-
     public Category findById(Integer id) ;
+    public Category update(Category category);
+    public void delete(Integer id);
 }

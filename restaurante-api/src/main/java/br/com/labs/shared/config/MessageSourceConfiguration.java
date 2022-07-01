@@ -1,4 +1,4 @@
-package br.com.labs.config;
+package br.com.labs.shared.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

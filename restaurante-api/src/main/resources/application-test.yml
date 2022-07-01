@@ -1,15 +1,11 @@
 spring:
   datasource:
-    username: postgres
-    password: postgres
+    username: root
+    password: root
   jpa:
     database: postgresql
     hibernate:
       ddl-auto: create
-  data:
-    mongodb:
-      database: loja
-      host: 172.17.0.2
   main:
     lazy-initialization: true
 

@@ -40,8 +40,8 @@ public class CategoryController {
 	@PostMapping
 	public ResponseEntity<Category> create(@Valid @RequestBody Category category) {
 
-		categoryRepository.save(category);
-		
+		category = categoryService.create(category);
+
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(category.getId())
 				.toUri();
 
@@ -52,25 +52,15 @@ public class CategoryController {
 	public ResponseEntity<Category> findById(@PathVariable("id") Integer id) throws NoHandlerFoundException {
 		return ResponseEntity.ok(categoryService.findById(id));
 	}
-	
+
 	@PutMapping("/{id}")
-	public ResponseEntity<Category> update(@Valid @RequestBody Category category,@PathVariable("id") Integer id){
-		return categoryRepository.findById(id)
-				.map(c -> {
-					
-					c.setDescription(category.getDescription());
-					c.setName(category.getName());
-					
-					return ResponseEntity.ok(c);
-				}).orElse(ResponseEntity.notFound().build());
+	public ResponseEntity<Category> update(@Valid @RequestBody Category category, @PathVariable("id") Integer id) {
+		return ResponseEntity.ok(categoryService.update(category));
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> destroy(@PathVariable("id") Integer id){
-		return categoryRepository.findById(id)
-				.map(category -> {
-					categoryRepository.deleteById(id);
-					return ResponseEntity.ok().build();
-				}).orElse(ResponseEntity.notFound().build());
+	public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+		categoryService.delete(id);
+		return ResponseEntity.ok().build();
 	}
 }

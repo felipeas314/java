@@ -1,4 +1,4 @@
-package br.com.labs.config;
+package br.com.labs.shared.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

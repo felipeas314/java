@@ -1,4 +1,4 @@
-package br.com.labs.unit.category;
+package br.com.labs.integration.category;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
