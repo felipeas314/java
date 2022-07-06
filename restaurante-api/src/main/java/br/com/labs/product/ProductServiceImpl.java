@@ -1,7 +1,5 @@
 package br.com.labs.product;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -10,9 +8,9 @@ import br.com.labs.shared.exception.ResourceNotFoundException;
 public class ProductServiceImpl implements ProductService {
 
 	private ProductRepository productRepository;
-	
+
 	private final String MESSAGE_ERROR = "Produto não encontrado";
-	
+
 	public ProductServiceImpl(ProductRepository productRepository) {
 		this.productRepository = productRepository;
 	}
@@ -47,6 +45,13 @@ public class ProductServiceImpl implements ProductService {
 	public void delete(Integer id) {
 		productRepository.findById(id).ifPresentOrElse(product -> {
 			productRepository.delete(product);
+		}, () -> new ResourceNotFoundException(MESSAGE_ERROR));
+	}
+
+	public void addQuantityInProduct(String code, int quantity) {
+		productRepository.findByCode(code).ifPresentOrElse(product -> {
+			product.addQuantity(quantity);
+			productRepository.save(product);
 		}, () -> new ResourceNotFoundException(MESSAGE_ERROR));
 	}
 

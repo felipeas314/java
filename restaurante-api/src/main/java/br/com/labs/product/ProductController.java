@@ -23,19 +23,22 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class ProductController {
 
 	private ProductRepository productRepository;
+	
+	private ProductServiceImpl productServiceImpl;
 
-	public ProductController(ProductRepository productRepository) {
+	public ProductController(ProductRepository productRepository,ProductServiceImpl productServiceImpl) {
 		this.productRepository = productRepository;
+		this.productServiceImpl = productServiceImpl;
 	}
 
 	@GetMapping
 	public ResponseEntity<Page<Product>> index(@PageableDefault(page = 0, size = 20) Pageable pageable) {
-		return ResponseEntity.ok(productRepository.findAll(pageable));
+		return ResponseEntity.ok(productServiceImpl.list(pageable));
 	}
 
 	@PostMapping
 	public ResponseEntity<Product> create(@Valid @RequestBody Product product) {
-		productRepository.save(product);
+		productServiceImpl.create(product);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(product.getId())
 				.toUri();
@@ -45,33 +48,18 @@ public class ProductController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Product> show(@PathVariable("id") Integer id) {
-		return productRepository.findById(id).map(product -> ResponseEntity.ok(product))
-				.orElse(ResponseEntity.notFound().build());
+		return ResponseEntity.ok(productServiceImpl.findById(id));
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Product> update(@PathVariable("id") Integer id, Product product) {
-		return productRepository.findById(id).map(p -> {
-
-			p.setId(id);
-			p.setName(product.getName());
-			p.setCategory(product.getCategory());
-			p.setDescription(product.getDescription());
-//			p.setStore(product.getStore());
-			p.setPrice(product.getPrice());
-
-			productRepository.save(p);
-
-			return ResponseEntity.ok(p);
-		}).orElse(ResponseEntity.notFound().build());
+		return ResponseEntity.ok(productServiceImpl.update(product));
 	}
 
 	@DeleteMapping
 	public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
-		return productRepository.findById(id).map(product -> {
-			productRepository.delete(product);
-			return ResponseEntity.ok().build();
-		}).orElse(ResponseEntity.notFound().build());
+		productRepository.deleteById(id);
+		return ResponseEntity.ok().build();
 	}
 
 }

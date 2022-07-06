@@ -26,6 +26,10 @@ public class Product {
 	@ManyToOne
 	private Category category;
 
+	private String code;
+
+	private int quantity;
+
 	public Integer getId() {
 		return id;
 	}
@@ -64,6 +68,30 @@ public class Product {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	public void addQuantity(int quantity) {
+		if(quantity <= 0) {
+			
+		}
+		
+		this.quantity += quantity;
 	}
 
 }
