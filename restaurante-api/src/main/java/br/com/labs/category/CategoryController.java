@@ -23,13 +23,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequestMapping("/category")
 public class CategoryController {
 
-	private CategoryRepository categoryRepository;
-
 	private CategoryService categoryService;
 
-	public CategoryController(CategoryRepository categoryRepository, CategoryService categoryService) {
-		this.categoryRepository = categoryRepository;
-		this.categoryService = categoryService;
+	public CategoryController(CategoryService categoryService) {
 	}
 
 	@GetMapping
