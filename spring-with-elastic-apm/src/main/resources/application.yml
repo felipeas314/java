@@ -1,0 +1,9 @@
+elastic:
+  apm:
+    enabled: true
+    server-url: http://localhost:8200
+    service-name: elastic-apm-spring-boot-integration
+    secret-token: axxVpmQB2HMzCL9PgBHVrnxjNXXw5J7bd79DFm6sjBJR5HPXDhcF8MSb3vv4bpg44
+    environment: prod
+    application-packages: br.com
+    log-level: INFO
