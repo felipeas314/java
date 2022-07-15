@@ -2,9 +2,11 @@ package br.com.labs.product;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import br.com.labs.exception.ResourceNotFoundException;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 
 	private ProductRepository productRepository;

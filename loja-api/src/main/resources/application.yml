@@ -8,8 +8,6 @@ spring:
     hibernate:
       ddl-auto: create
     database-platform: org.hibernate.dialect.PostgreSQL94Dialect
-  main:
-    lazy-initialization: true
 
 server:
   servlet:

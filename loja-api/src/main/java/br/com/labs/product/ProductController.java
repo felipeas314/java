@@ -24,21 +24,20 @@ public class ProductController {
 
 	private ProductRepository productRepository;
 	
-	private ProductServiceImpl productServiceImpl;
+	private ProductService productService;
 
-	public ProductController(ProductRepository productRepository,ProductServiceImpl productServiceImpl) {
-		this.productRepository = productRepository;
-		this.productServiceImpl = productServiceImpl;
+	public ProductController(ProductService productService) {
+		this.productService = productService;
 	}
 
 	@GetMapping
 	public ResponseEntity<Page<Product>> index(@PageableDefault(page = 0, size = 20) Pageable pageable) {
-		return ResponseEntity.ok(productServiceImpl.list(pageable));
+		return ResponseEntity.ok(productService.list(pageable));
 	}
 
 	@PostMapping
 	public ResponseEntity<Product> create(@Valid @RequestBody Product product) {
-		productServiceImpl.create(product);
+		productService.create(product);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(product.getId())
 				.toUri();
@@ -48,12 +47,12 @@ public class ProductController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Product> show(@PathVariable("id") Integer id) {
-		return ResponseEntity.ok(productServiceImpl.findById(id));
+		return ResponseEntity.ok(productService.findById(id));
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Product> update(@PathVariable("id") Integer id, Product product) {
-		return ResponseEntity.ok(productServiceImpl.update(product));
+		return ResponseEntity.ok(productService.update(product));
 	}
 
 	@DeleteMapping
