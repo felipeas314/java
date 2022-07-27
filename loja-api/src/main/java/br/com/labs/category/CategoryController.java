@@ -26,6 +26,7 @@ public class CategoryController {
 	private CategoryService categoryService;
 
 	public CategoryController(CategoryService categoryService) {
+		System.out.println("Qweqweqwe");
 		this.categoryService = categoryService;
 	}
 
