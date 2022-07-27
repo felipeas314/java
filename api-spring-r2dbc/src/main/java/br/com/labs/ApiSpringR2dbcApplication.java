@@ -9,7 +9,7 @@ public class ApiSpringR2dbcApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(ApiSpringR2dbcApplication.class, args);
-
+		// fazendo o teste 2
 		//fazendo o teste do commit
 	}
 
